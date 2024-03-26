@@ -1,0 +1,9 @@
+<ngb-alert [dismissible]="canBeClosed" [type]="color" (closed)="emitCloseEvent()">
+    <ng-template *ngIf="beforeTextTemplate" [ngTemplateOutlet]="beforeTextTemplate"
+        [ngTemplateOutletContext]="{$implicit:'before'}">
+    </ng-template>
+    {{ text }}
+    <ng-template *ngIf="afterTextTemplate" [ngTemplateOutlet]="afterTextTemplate"
+        [ngTemplateOutletContext]="{$implicit:{ 'toto': color, 'tata':'titi'}}">
+    </ng-template>
+</ngb-alert>
