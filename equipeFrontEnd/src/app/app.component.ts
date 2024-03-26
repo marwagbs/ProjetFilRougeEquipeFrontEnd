@@ -4,11 +4,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { Observable } from 'rxjs';
 import { LoginService } from './services/login/login.service';
 import { AsyncPipe } from '@angular/common';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, AsyncPipe],
+
+  imports: [RouterOutlet, NavbarComponent, AsyncPipe , FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
