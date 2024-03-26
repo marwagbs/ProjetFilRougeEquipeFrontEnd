@@ -16,5 +16,8 @@ $warning:$color-tertiary;
 
 @import 'bootstrap/scss/bootstrap';
 
+/*Importing fontawesome Icones*/
+@import "@fortawesome/fontawesome-free/css/all";
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
