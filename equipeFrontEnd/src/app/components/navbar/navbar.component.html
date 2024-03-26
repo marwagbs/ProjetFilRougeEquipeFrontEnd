@@ -10,8 +10,12 @@
           <li *ngFor="let menuRoute of menuRoutes" class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="menuRoute.path">{{menuRoute.libelle}}</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link"(click)="logout()"  class="btn"><i
+              class="fas fa-power-off me-1"></i>Déconnexion</a>
+          </li>
         </ul>
-       
+     
       </div>
     </div>
   </nav>
