@@ -1,1 +1,12 @@
-<p>page-reservations works!</p>
+<div *ngFor="let reservation of reservations$ | async" class="list-group m-3">
+    <a href="#" class="list-group-item list-group-item-action list-group-item-primary p-3 d-flex justify-content-start align-items-center">
+        <span class="badge bg-primary rounded-pill m-3">{{ reservation.id }}</span>
+        {{ reservation.utilisateur.prenom}}
+        {{ reservation.utilisateur.nom}},
+        {{ reservation.nbPersonne}} personnes
+        <br>
+        {{ reservation.dateRes | date: 'dd/MM/yyyy'}} à
+        {{ reservation.heure | timeFormat }}
+    </a>
+    
+</div>
