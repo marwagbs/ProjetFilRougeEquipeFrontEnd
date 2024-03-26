@@ -12,7 +12,7 @@ import { IMenuRoute } from './menu-route';
 })
 export class NavbarComponent {
  public menuRoutes:IMenuRoute[]=[
-  {path:'accueil',libelle:'Accueil clientele'},
+  {path:'accueil-clientele',libelle:'Accueil clientele'},
   {path:'reservation',libelle:'Réservations'},
   {path:'service',libelle:'Service'},
   {path:'cuisine',libelle:'Cuisine'},
