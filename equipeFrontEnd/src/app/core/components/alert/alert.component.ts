@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/co
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-alert',
+  selector: 'core-alert',
   standalone: true,
   imports: [NgbAlertModule, CommonModule],
   templateUrl: './alert.component.html',
@@ -11,7 +11,7 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AlertComponent {
   @Input()
-  public text?: string;
+  public text?: string ;
 
   @Input()
   public canBeClosed: boolean = false;

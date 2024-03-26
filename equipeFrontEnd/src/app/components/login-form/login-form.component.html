@@ -1,1 +1,22 @@
-<p>login-form works!</p>
+
+<div class="login-bloc">
+    <h1>Connexion</h1>
+   
+
+    <form class="mt-2" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label>Login</label>
+            <input name="login" type="text" class="form-control" [(ngModel)]="login" placeholder="Login..">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input name="password" type="password" [(ngModel)]="password" class="form-control"
+                placeholder="Mot de passe..">
+        </div>
+        <button class="mt-2 btn btn-primary submit-btn" type="submit">Connexion</button>
+    </form>
+
+    @if(authenticationResult!=null){
+        <core-alert [text]="authenticationResult" [color]="'danger'">  </core-alert>
+    }
+</div>
