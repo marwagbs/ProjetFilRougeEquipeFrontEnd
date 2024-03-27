@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AccueilClientComponent } from './components/accueil-client/accueil-client.component';
 
 export const routes: Routes = [
     { path: 'accueil-employe',
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: 'reservations-acceptees',
         loadComponent:
         () => import('./components/page-reservations-acceptees/page-reservations-acceptees.component').then(f => f.PageReservationsAccepteesComponent)
-    }
+    },
+    { path: 'accueil-clientele', component: AccueilClientComponent}
 ];
