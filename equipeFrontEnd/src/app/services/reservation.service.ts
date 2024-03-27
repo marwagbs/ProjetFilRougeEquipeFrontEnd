@@ -14,4 +14,8 @@ export class ReservationService {
     return this.httpClient.get<Reservations>('http://localhost:8080/reservations/restaurant/1');
   }
 
+ getReservationsByStatutAcceptee (): Observable<Reservations> {
+  return this.httpClient.get<Reservations>('http://localhost:8080/reservations/acceptees');
+ } 
+
 }

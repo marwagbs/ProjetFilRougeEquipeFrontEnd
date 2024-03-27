@@ -13,7 +13,7 @@ import { LoginService } from '../../services/login/login.service';
 })
 export class NavbarComponent {
  public menuRoutes:IMenuRoute[]=[
-  {path:'accueil',libelle:'Accueil employe'},
+  {path:'accueil-employe',libelle:'Accueil employe'},
   {path:'accueil-clientele',libelle:'Accueil clientele'},
   {path:'reservation',libelle:'Réservations'},
   {path:'service',libelle:'Service'},
