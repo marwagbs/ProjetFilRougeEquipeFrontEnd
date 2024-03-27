@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatRippleComponent } from "../mat-ripple/mat-ripple.component";
+import { MatRippleComponent } from "../../core/components/mat-ripple/mat-ripple.component";
 import {MatRippleModule} from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
     standalone: true,
     templateUrl: './page-accueil.component.html',
     styleUrl: './page-accueil.component.scss',
-    imports: [MatRippleComponent, MatRippleModule, RouterModule]
+    imports: [MatRippleComponent, MatRippleModule, RouterModule ]
 })
 export class PageAccueilComponent {
 
