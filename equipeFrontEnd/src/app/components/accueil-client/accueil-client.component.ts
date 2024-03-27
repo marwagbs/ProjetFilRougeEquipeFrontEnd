@@ -1,29 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AccueilClientService } from '../../services/accueil-client.service';
 import { TableRes } from '../../entities/TableRes';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ReservationService } from '../../services/reservation.service';
+import { Reservation } from '../../entities/reservation';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-accueil-client',
-  standalone: true,
-  imports: [RouterModule, CommonModule], 
   templateUrl: './accueil-client.component.html',
-  styleUrls: ['./accueil-client.component.scss',
-  ]
+  styleUrls: ['./accueil-client.component.scss']
 })
-export class AccueilClientComponent implements OnInit {
+export class AccueilClientComponent implements OnInit, OnDestroy {
 
   tables: TableRes[] = [];
+  reservations: Reservation[] = [];
+  tableSubscription?: Subscription;
+  reservationSubscription?: Subscription;
 
-  constructor(private accueilClientService: AccueilClientService) { }
+  constructor(
+    private accueilClientService: AccueilClientService,
+    private reservationService: ReservationService) { }
 
   ngOnInit(): void {
     this.getAllTables();
+ 
   }
 
   getAllTables(): void {
-    this.accueilClientService.getAllTables().subscribe({
+    this.tableSubscription = this.accueilClientService.getAllTables().subscribe({
       next: (tables: TableRes[]) => {
         this.tables = tables;
       },
@@ -31,5 +35,15 @@ export class AccueilClientComponent implements OnInit {
         console.error('Error fetching tables:', error);
       }
     });
+  }
+
+  
+  ngOnDestroy(): void {
+    if (this.tableSubscription) {
+      this.tableSubscription.unsubscribe();
+    }
+    if (this.reservationSubscription) {
+      this.reservationSubscription.unsubscribe();
+    }
   }
 }

@@ -28,5 +28,6 @@ export class AccueilClientService {
     return this.http.get<TableRes>(`${this.baseUrl}/${id}`);
   }
 
+  
 
 }
