@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
-import { AccueilClientComponent } from './components/accueil-client/accueil-client.component';
+import { PageAccueilComponent } from './components/page-accueil/page-accueil.component';
+import { PageReservationsComponent } from './components/page-reservations/page-reservations.component';
 
 export const routes: Routes = [
-    { path: 'accueil-clientele', component: AccueilClientComponent},
+    { path: 'accueil-employe', component: PageAccueilComponent },
+    { path: 'reservation', component: PageReservationsComponent },
 ];
-
