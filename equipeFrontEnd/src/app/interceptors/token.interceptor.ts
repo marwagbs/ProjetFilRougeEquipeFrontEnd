@@ -1,17 +1,35 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-
-export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-
- // On ajoute des headers à la requête
- const token = localStorage.getItem('token');
-
- const clone = req.clone({
-   setHeaders: {
-     'custom-m2i-token': token || ''
-   }
- });
-  
-  return next(req);
+import { StorageService } from '../services/login/storage.service';
+import { inject } from '@angular/core';
 
 
-};
+export const tokenInterceptor: HttpInterceptorFn = (req, next) => 
+{
+    // On ajoute des headers à la requête
+    const storageService: StorageService = inject(StorageService);
+
+    const token = storageService.get("token");
+
+    if(token)
+    {
+        const clone = req.clone
+        ({
+            setHeaders: 
+            {
+                'token': token
+            }
+        });
+
+        return next(clone);
+
+    }
+    else
+    {
+
+        return next(req);
+
+    } 
+
+
+
+  };

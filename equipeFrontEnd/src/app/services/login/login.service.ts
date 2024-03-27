@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
-  private static readonly _tokenStorageKey = "TOKEN_SK";
+  private static readonly _tokenStorageKey = "token";
   private _isAuthenticated$ = new BehaviorSubject<boolean>(false);
  /**
    * Création d'un observable à partir du sujet privé.
