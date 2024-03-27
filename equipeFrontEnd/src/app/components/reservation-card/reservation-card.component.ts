@@ -32,8 +32,11 @@ export class ReservationCardComponent implements OnInit {
   public status?: string | undefined;
 
   @Input()
-  public icon1?: string;
+  public btnstyle?: string;
 
   @Input()
-  public icon2?: string;
+  public firstbtn?: string;
+
+  @Input()
+  public secondbtn?: string;
 }
