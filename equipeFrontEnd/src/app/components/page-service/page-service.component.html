@@ -1,1 +1,19 @@
+<div class="container" >
+    <ng-container *ngIf="tables$ | async  as tables else loading" >
+        <div class="d-flex flex-row flex-wrap gap-1" *ngFor="let table of tables">
+            <app-mat-ripple [text]="table.numeroTable.toString()"></app-mat-ripple>
+        </div>
+    </ng-container>
+</div>
 
+<ng-template #loading>
+    <core-alert text="" [beforeTextTemplate]="spinner"></core-alert>
+</ng-template>
+<ng-template #spinner>
+    <div class="d-flex align-items-center">
+        <div class="spinner-border text-primary m-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        Chargement en cours..
+    </div>
+</ng-template>
