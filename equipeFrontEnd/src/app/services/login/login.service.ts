@@ -65,7 +65,7 @@ export class LoginService {
     this.notifyAuthenticationState(false);
     this.router.navigateByUrl('/login');
 
-  
+    this.httpClient.get<any>('http://localhost:8080/deconnexion')
   }
 }
  

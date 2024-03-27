@@ -6,7 +6,7 @@ export const routes: Routes = [
 
   
 
-    { path: 'accueil-employe', component: PageAccueilComponent },
+    { path: 'accueil', component: PageAccueilComponent },
     { path: 'reservation', component: PageReservationsComponent },
        
     {path:"**", loadComponent:()=>import('./components/login-form/login-form.component').then((f=>f.LoginFormComponent)) }
