@@ -1,1 +1,26 @@
-<p>accueil-client works!</p>
+<div class="container">
+    <div class="row">
+      <ng-container *ngIf="tables.length > 0; else noTables">
+        <div *ngFor="let table of tables" class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 bg-primary text-white">
+            <div class="card-body">
+              <p class="card-text">Restaurant: {{ table.restaurant.nom}}</p>
+              <p class="card-text">Nombre de places: {{ table.nombrePlaces }}</p>
+              <p class="card-text">Statut de la table: {{ table.statut }}</p>
+            </div>
+            <div class="card-footer bg-secondary">
+                <p class="card-text">Numero de table: {{ table.numeroTable }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+
+      <ng-template #noTables>
+        <div class="col-md-12">
+          <p class="text-danger">No tables available.</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  
