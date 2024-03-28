@@ -12,4 +12,9 @@
   
     -webkit-user-drag: none;
     -webkit-tap-highlight-color: transparent;
+    transition: transform 300ms ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
