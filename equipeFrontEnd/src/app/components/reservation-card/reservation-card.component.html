@@ -1,4 +1,5 @@
-<div *ngFor="let reservation of reservations$ | async" class="list-group m-3">
+<ng-container>
+    <div *ngFor="let reservation of reservations$ | async" class="list-group m-3">
     <div *ngIf="reservation.statut == status" class="list-group-item list-group-item-action list-group-item-primary p-3 gap-1 d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
             <span class="badge bg-primary rounded-pill m-3 px-3">{{ reservation.id }}</span>
@@ -8,13 +9,22 @@
             {{ reservation.dateRes | date: 'dd/MM/yyyy'}} à
             {{ reservation.heure | timeFormat }}
         </div>
-        <div class="d-flex gap-2">
-            <button class="text-white bg-primary pb-1 btn {{btnstyle}}" (click)="onChangeStatut(reservation.id)">{{firstbtn}}
-                <mat-icon *ngIf="reservation.statut == undefined"><i class="fa-solid fa-check"></i></mat-icon>
-            </button>
-            <button class="text-white bg-warning pb-1 btn {{btnstyle}}">{{secondbtn}}
-                <mat-icon *ngIf="reservation.statut == undefined"><i class="fa-solid fa-xmark"></i></mat-icon>
-            </button>
+        <div *ngIf="reservation.statut == undefined" class="d-flex gap-2">
+                <button class="text-white bg-primary pb-1 btn {{btnstyle}}" (click)="onStatutAcceptee(reservation.id)">{{firstbtn}}
+                    <mat-icon><i class="fa-solid fa-check"></i></mat-icon>
+                </button>
+                <button class="text-white bg-warning pb-1 btn {{btnstyle}}" (click)="onStatutRefusee(reservation.id)">{{secondbtn}}
+                    <mat-icon><i class="fa-solid fa-xmark"></i></mat-icon>
+                </button>
+        </div>
+        <div *ngIf="reservation.statut == 'acceptée'" class="d-flex gap-2">
+                <button class="text-white bg-primary pb-1 btn {{btnstyle}}" (click)="onStatutPresent(reservation.id)">{{firstbtn}}
+                    <mat-icon *ngIf="reservation.statut == undefined"><i class="fa-solid fa-check"></i></mat-icon>
+                </button>
+                <button class="text-white bg-warning pb-1 btn {{btnstyle}}" (click)="onStatutAbsent(reservation.id)">{{secondbtn}}
+                    <mat-icon *ngIf="reservation.statut == undefined"><i class="fa-solid fa-xmark"></i></mat-icon>
+                </button>
         </div>
     </div>
-</div>
+    </div>
+</ng-container>
