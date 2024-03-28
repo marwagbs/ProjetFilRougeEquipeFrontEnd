@@ -4,7 +4,7 @@ import { PageReservationsComponent } from './components/page-reservations/page-r
 import { AccueilClientComponent } from './components/accueil-client/accueil-client.component';
 
 export const routes: Routes = [
-    { path: 'accueil-employe', component: PageAccueilComponent },
+    { path: 'accueil', component: PageAccueilComponent },
     { path: 'reservation', component: PageReservationsComponent },
     { path: 'accueil-clientele', component: AccueilClientComponent},
 ];
