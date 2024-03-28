@@ -12,4 +12,7 @@ import {MatRippleModule} from '@angular/material/core';
 export class MatRippleComponent {
   @Input()
   public text?: string;
+
+  @Input()
+  public classname?: string;
 }
