@@ -9,7 +9,7 @@ import { TableRes } from '../entities/TableRes';
 })
 export class AccueilClientService {
 
-  private baseUrl = 'http://localhost:8080/tableres/1/tables';
+  private baseUrl = 'http://localhost:8080/tableres/1/tablesLibresEtReservees';
 
   constructor(private http: HttpClient) {
     

@@ -1,20 +1,38 @@
+<h2>Le Petit Bistro</h2>
+
+
+
+
+
+
+
 <div class="container">
   <div class="row">
     <ng-container *ngIf="tables.length > 0; else noTables">
+    
       <div *ngFor="let table of tables" class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100 bg-primary text-white">
-          <div class="card-body">
-          
+          <div class="card-body">  
             <p class="card-text">{{ table.nombrePlaces }} places</p>
-            <p class="card-text"> {{ table.statut }}</p>
-  
+            <p class="card-text">{{ table.statut }}</p>
           </div>
           <div class="card-footer bg-secondary">
             <button class="btn btn-sm btn-outline-light float-right">{{ table.numeroTable }}</button>
           </div>
+        
+          <div class="card-body">
+            <h5 class="card-title">Reservations à venir </h5>
+            <div *ngFor="let reservation of getReservationsForTable(table.id)">
+              <p class="card-text">{{ reservation.utilisateur.nom }} {{ reservation.utilisateur.prenom }} </p>
+              <p class="card-text">{{ reservation.dateRes }} - {{ reservation.heure }}</p>
+              <p class="card-text">{{ reservation.nbPersonne }} personnes</p>
+         
+            
+            </div>
+          </div>
         </div>
       </div>
-       
+      
     </ng-container>
 
     <ng-template #noTables>
@@ -24,3 +42,4 @@
     </ng-template>
   </div>
 </div>
+
