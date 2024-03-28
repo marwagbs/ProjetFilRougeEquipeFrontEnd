@@ -3,11 +3,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { TimeFormatPipe } from '../../pipes/time-format.pipe';
+import { TimeFormatPipe } from '../../../pipes/time-format.pipe';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Observable, map } from 'rxjs';
-import { Reservations } from '../../entities/reservation';
-import { ReservationService } from '../../services/reservation.service';
+import { Reservations } from '../../../entities/reservation';
+import { ReservationService } from '../../../services/reservation.service';
 
 @Component({
   selector: 'app-reservation-card',
