@@ -1,0 +1,10 @@
+@import "../../../styles/color";
+.chevron{
+    margin:2px;
+   color: $color-primary;
+}
+
+.shadowed-td {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+    padding:5px;
+  }

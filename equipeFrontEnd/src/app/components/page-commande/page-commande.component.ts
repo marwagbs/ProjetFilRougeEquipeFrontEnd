@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { Produit } from '../../entities/produit';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AlertComponent } from '../../core/components/alert/alert.component';
+import { CommandeService } from '../../services/commande/commande.service';
+import { CommandeDataService } from '../../services/commande/commande-data.service';
+import { Commande } from '../../entities/commande';
 
 @Component({
   selector: 'app-page-commande',
@@ -15,34 +18,53 @@ import { AlertComponent } from '../../core/components/alert/alert.component';
 export class PageCommandeComponent implements OnInit{
   public produits$!:Observable<Produit[]>;
   produitsParCategorie: Map<string, Produit[]> = new Map();
-  constructor(private produitService: ProduitService){ }
+  public numeroTable?:number;
+  produitsClics:Map<number,number>=new Map();
+  clickedProductId: number | null = null;
+
+  constructor(private produitService: ProduitService, private commandeService: CommandeService,private commandeDataervice: CommandeDataService ){ }
 
 ngOnInit(): void {
     this.produits$=this.produitService.getAllProduits();
+    this.numeroTable=this.commandeDataervice.getCommandeData()?.tableRes.id
     this.produits$.subscribe(produits=>{
       produits.forEach(produit =>{
-        produit.quantite=0;
         if(!this.produitsParCategorie.has(produit.categorie.libelle)){
           this.produitsParCategorie.set(produit.categorie.libelle,[])
         }
         this.produitsParCategorie.get(produit.categorie.libelle)!.push(produit);
+        this.produitsClics.set(produit.id,0)
         
       })
 
     })
   }
-  incrementQuantity(produit: Produit) {
-    produit.quantite++
-  }
+ public addProduct(produit: Produit): void {
+    const currentClicks = this.produitsClics.get(produit.id) || 0;
+    this.produitsClics.set(produit.id, currentClicks + 1);
+    const newData={
+      "produits": [{"id":produit.id}]
+    } 
+    const idCommande =this.commandeDataervice.getCommandeData();
+    if (idCommande!==null){
+      this.commandeService.updateCommande(idCommande.id, newData).subscribe(
+        (commande: Commande) => {
+          console.log('Commande mise à jour avec le produit ajouté :', commande);
+          
+        })
 
-  // Méthode pour décrémenter la quantité
-  decrementQuantity(produit: Produit) {
-    if (produit.quantite>0){
-      produit.quantite--;
-    }
-   
+      
+    } }
+ 
+    public closeCommande():void{
+      const idCommande =this.commandeDataervice.getCommandeData();
+    if (idCommande!==null){
+      this.commandeService.updateStatusCommande(idCommande.id).subscribe(
+        (commande: Commande) => {
+          console.log('Commande mise à jour avec le produit ajouté :', commande);
+        })
     }
 
 }
 
-  
+}

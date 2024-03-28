@@ -1,7 +1,7 @@
-<div class="container" >
+<div class="container d-flex flex-row flex-wrap gap-4 justify-content-center mt-5" >
     <ng-container *ngIf="tables$ | async  as tables else loading" >
-        <div class="d-flex flex-row flex-wrap gap-1" *ngFor="let table of tables">
-            <app-mat-ripple [text]="table.numeroTable.toString()"></app-mat-ripple>
+        <div *ngFor="let table of tables">
+            <app-mat-ripple [text]="table.numeroTable.toString()" classname="ripple-table" (click)="createCommande(table.id)"></app-mat-ripple>
         </div>
     </ng-container>
 </div>
