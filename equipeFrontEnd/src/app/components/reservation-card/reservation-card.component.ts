@@ -33,17 +33,20 @@ export class ReservationCardComponent implements OnInit {
   // public selectReservation(reservation: Reservation) {
   //   return this.reservationService.currentReservation = reservation;
   // }
+  onStatutAcceptee(id: number): void {
+      this.reservationService.setStatutAcceptee(id, "");
+  }
 
-  onChangeStatut(id: number): void {
+  onStatutRefusee(id: number): void {
+    this.reservationService.setStatutRefusee(id, "");
+  }
 
-    const newStatut = '';
-    this.reservationService.updateStatut(id, newStatut);
+  onStatutPresent(id: number): void {
+    this.reservationService.setStatutPresent(id, "");
+  }
 
-    console.log(this._reservation$);
-    
-
-   
-    
+  onStatutAbsent(id: number): void {
+    this.reservationService.setStatutAbsent(id, "");
   }
 
   @Input()

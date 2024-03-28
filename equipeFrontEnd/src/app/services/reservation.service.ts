@@ -34,10 +34,20 @@ export class ReservationService {
   return this.getAllReservations().pipe(map(() => reservations.find(r => r.id === id)))
  }
 
- updateStatut(id: number, data: any): void {
-
-  
+ setStatutAcceptee(id: number, data: any): void {
   this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setacceptee/${id}`,{}).subscribe();
+ }
+
+ setStatutRefusee(id: number, data: any): void {
+  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setrefusee/${id}`,{}).subscribe();
+ }
+
+ setStatutPresent(id: number, data: any): void {
+  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setpresent/${id}`,{}).subscribe();
+ }
+
+ setStatutAbsent(id: number, data: any): void {
+  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setabsent/${id}`,{}).subscribe();
  }
 
 //  modifStatut(id: number, statut: 'acceptée' | 'refusée') {
