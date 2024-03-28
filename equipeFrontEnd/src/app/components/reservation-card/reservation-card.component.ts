@@ -3,11 +3,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { TimeFormatPipe } from '../../../pipes/time-format.pipe';
+import { TimeFormatPipe } from '../../pipes/time-format.pipe';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Observable, map } from 'rxjs';
-import { Reservations } from '../../../entities/reservation';
-import { ReservationService } from '../../../services/reservation.service';
+import { Reservation, Reservations } from '../../entities/reservation';
+import { ReservationService } from '../../services/reservation.service';
 
 @Component({
   selector: 'app-reservation-card',
@@ -18,6 +18,8 @@ import { ReservationService } from '../../../services/reservation.service';
 })
 export class ReservationCardComponent implements OnInit {
   reservations$!: Observable<Reservations>;
+  _reservation$!: Observable<Reservation>;
+ 
 
   constructor(private reservationService: ReservationService) { }
 
@@ -26,6 +28,22 @@ export class ReservationCardComponent implements OnInit {
       return arr.sort((a, b) => (a.dateRes).localeCompare(b.dateRes));
     })
     )
+  }
+
+  // public selectReservation(reservation: Reservation) {
+  //   return this.reservationService.currentReservation = reservation;
+  // }
+
+  onChangeStatut(id: number): void {
+
+    const newStatut = '';
+    this.reservationService.updateStatut(id, newStatut);
+
+    console.log(this._reservation$);
+    
+
+   
+    
   }
 
   @Input()
