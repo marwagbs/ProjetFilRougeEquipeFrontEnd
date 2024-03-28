@@ -9,7 +9,7 @@
             {{ reservation.heure | timeFormat }}
         </div>
         <div class="d-flex gap-2">
-            <button class="text-white bg-primary pb-1 btn {{btnstyle}}">{{firstbtn}}
+            <button class="text-white bg-primary pb-1 btn {{btnstyle}}" (click)="onChangeStatut(reservation.id)">{{firstbtn}}
                 <mat-icon *ngIf="reservation.statut == undefined"><i class="fa-solid fa-check"></i></mat-icon>
             </button>
             <button class="text-white bg-warning pb-1 btn {{btnstyle}}">{{secondbtn}}

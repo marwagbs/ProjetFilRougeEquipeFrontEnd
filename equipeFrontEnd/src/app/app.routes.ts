@@ -17,10 +17,11 @@ export const routes: Routes = [
         loadComponent:
         () => import('./components/page-reservations-acceptees/page-reservations-acceptees.component').then(f => f.PageReservationsAccepteesComponent)
     },
-
-
+    { path: 'menu-reservation',
+        loadComponent:
+        () => import('./components/menu-reservation/menu-reservation.component').then(f => f.MenuReservationComponent)
+    },
     { path: 'accueil-clientele',
     loadComponent:()=> import('./components/accueil-client/accueil-client.component').then(f => f.AccueilClientComponent)
 }
-
 ];
