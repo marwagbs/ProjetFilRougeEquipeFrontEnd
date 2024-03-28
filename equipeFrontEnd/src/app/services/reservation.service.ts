@@ -55,4 +55,10 @@ export class ReservationService {
 //   return this.httpClient.patch;
 //  }
 
+
+getReservationsByRestaurant() : Observable<Reservations> {
+  return this.httpClient.get<Reservations>('http://localhost:8080/reservations/restaurant/1');
+  
+}
+
 }
