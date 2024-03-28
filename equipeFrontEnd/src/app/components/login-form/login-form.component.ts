@@ -23,7 +23,7 @@ export class LoginFormComponent {
 
   constructor(private loginService: LoginService, private router:Router){
     if (this.loginService.isAuthenticated()) {
-      this.router.navigate(['/accueil']);
+      this.router.navigate(['/accueil-employe']);
     }
   }
 
@@ -36,7 +36,7 @@ export class LoginFormComponent {
       } else {
         
         this.authenticationResult = "Authentification réussi";
-        this.router.navigate(['/accueil']);
+        this.router.navigate(['/accueil-employe']);
        
       }
       console.log(this.authenticationResult);

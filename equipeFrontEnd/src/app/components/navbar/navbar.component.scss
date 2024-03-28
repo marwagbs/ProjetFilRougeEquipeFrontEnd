@@ -1,0 +1,32 @@
+@import "../../../styles/color";
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+   
+}
+ 
+.previous-arrow,
+.logout-logo {
+   font-size: 25px;
+   color: $color-primary;
+}
+ 
+.previous-arrow,
+.logo-container,
+.logout-logo {
+    margin: 0 10px;
+    cursor: pointer;
+}
+ 
+.logo-container img {
+    width: 200px;
+ 
+}
+.icon{
+    background-color: $color-primary;
+    color:#fff;
+    padding:15px;
+    border-radius: 50%;
+}
