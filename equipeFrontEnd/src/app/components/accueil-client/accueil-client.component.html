@@ -1,4 +1,11 @@
 <h2>Le Petit Bistro</h2>
+
+
+
+
+
+
+
 <div class="container">
   <div class="row">
     <ng-container *ngIf="tables.length > 0; else noTables">
@@ -12,7 +19,7 @@
           <div class="card-footer bg-secondary">
             <button class="btn btn-sm btn-outline-light float-right">{{ table.numeroTable }}</button>
           </div>
-          <!-- Display reservations for this table -->
+        
           <div class="card-body">
             <h5 class="card-title">Reservations à venir </h5>
             <div *ngFor="let reservation of getReservationsForTable(table.id)">
@@ -20,7 +27,7 @@
               <p class="card-text">{{ reservation.dateRes }} - {{ reservation.heure }}</p>
               <p class="card-text">{{ reservation.nbPersonne }} personnes</p>
          
-              <!-- You can display other reservation details here -->
+            
             </div>
           </div>
         </div>
