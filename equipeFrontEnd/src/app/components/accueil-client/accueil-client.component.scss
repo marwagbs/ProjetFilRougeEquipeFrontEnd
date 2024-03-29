@@ -1,10 +1,26 @@
-.btn-circle {
+
+@import "../../../styles/color";
+
+
+.rounded-circle {
     width: 50px;
     height: 50px;
     border-radius: 60px;
     text-align: center;
+    background-color: $color-secondary; /* Use color-primary variable for button background */
+    text-align: center;
+  }
+  
+  .rounded-circle {
+    margin-right: 10px;
+  }
+.card-footer {
+    background-color: $color-secondary; 
+    font-size: 20px; 
 }
 
-.circle-button-wrapper {
-    margin-right: 10px; 
-  }
+
+
+.custom-font {
+  font-family: Arial, sans-serif; /* Replace 'Arial' with your preferred font */
+}

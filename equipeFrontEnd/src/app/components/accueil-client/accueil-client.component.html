@@ -1,35 +1,47 @@
 <div class="container">
   <div class="row">
     <ng-container *ngIf="tables.length > 0; else noTables">
+     
       <div *ngFor="let table of tables" class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100 bg-primary text-white">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="circle-button-wrapper">
-                <button class="text-white bg-warning pb-1 btn btn-circle">{{ table.numeroTable }}</button>
-              </div>
-              <div>
-                <p class="card-text">{{ table.nombrePlaces }} places</p>
-                <p class="card-text">{{ table.statut }}</p>
-              </div>
+        <div class="card text-center">
+
+          <div class="d-flex align-items-center">
+            <div class="badge bg-primary rounded-pill m-3 px-3 d-flex align-items-center fs-4"> <!-- Add 'fs-4' for font size -->
+              {{ table.numeroTable }}
             </div>
           </div>
-          <div class="card-body">
+          
+        <div class="card-body">
+         
+          <h5 class="card-title fw-bold fs-5 text-primary">{{ table.nombrePlaces }} places</h5>
+
+           
             <div *ngIf="getReservationsForTable(table.id).length > 0; else noReservations">
               <p class="card-title">Reservations du jour:</p>
               <div *ngFor="let reservation of getReservationsForTable(table.id)">
                 <p class="card-text">
                   {{ reservation.heure }}: {{ reservation.utilisateur.nom }} {{ reservation.utilisateur.prenom }}
                   pour {{ reservation.nbPersonne }} personnes 
-                  <button class="btn btn-sm btn-secondary" (click)="openConfirmationDialogArrivee(reservation)">Arrivé ?</button>
+                  <button class="btn btn-lg btn-secondary rounded-pill fw-bold" (click)="openConfirmationDialogArrivee(reservation)">
+                    <span class="me-2">Arrivé</span> <i class="fas fa-check-circle"></i>
+                  </button>
+                  
                 </p>
               </div>
             </div>
             <ng-template #noReservations>
               <p class="text">Aucune reservation pour cette table</p>
-              <button class="btn btn-sm btn-secondary" (click)="openConfirmationDialogNouvelleResa(table)">Attribuer table</button>
+              <button class="btn btn-lg btn-warning fw-bold rounded-pill custom-font" (click)="openConfirmationDialogNouvelleResa(table)">
+                <span class="me-2">Attribuer table</span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 
+              </button>
+              
+              
+              
             </ng-template>
           </div>
+          <div class="card-footer text-uppercase font-weight-bold">{{ table.statut }}</div>
+
+
         </div>
       </div>
     </ng-container>
