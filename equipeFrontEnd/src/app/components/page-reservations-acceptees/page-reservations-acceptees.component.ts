@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+<<<<<<< HEAD
 
+=======
+import { ReservationCardComponent } from '../reservation-card/reservation-card.component';
+>>>>>>> cc14f953220b1785f9d1edd2f3db9d06c242e005
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';

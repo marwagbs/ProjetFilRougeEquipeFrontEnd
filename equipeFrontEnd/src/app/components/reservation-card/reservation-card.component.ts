@@ -3,11 +3,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { TimeFormatPipe } from '../../../pipes/time-format.pipe';
+import { TimeFormatPipe } from '../../pipes/time-format.pipe';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Observable, map } from 'rxjs';
-import { Reservations } from '../../../entities/reservation';
-import { ReservationService } from '../../../services/reservation.service';
+import { Reservation, Reservations } from '../../entities/reservation';
+import { ReservationService } from '../../services/reservation.service';
 
 @Component({
   selector: 'app-reservation-card',
@@ -22,10 +22,26 @@ export class ReservationCardComponent implements OnInit {
   constructor(private reservationService: ReservationService) { }
 
   ngOnInit(): void {
-    this.reservations$ = this.reservationService.getAllReservations().pipe(map(arr => {
-      return arr.sort((a, b) => (a.dateRes).localeCompare(b.dateRes));
-    })
-    )
+    this.reservations$ = this.reservationService.reservations$.pipe(map(arr => {
+        return arr.sort((a, b) => (a.dateRes).localeCompare(b.dateRes));
+      })
+      );
+  }
+
+  onStatutAcceptee(id: number): void {
+      this.reservationService.setStatutAcceptee(id, "");
+  }
+
+  onStatutRefusee(id: number): void {
+    this.reservationService.setStatutRefusee(id, "");
+  }
+
+  onStatutPresent(id: number): void {
+    this.reservationService.setStatutPresent(id, "");
+  }
+
+  onStatutAbsent(id: number): void {
+    this.reservationService.setStatutAbsent(id, "");
   }
 
   @Input()
@@ -39,4 +55,10 @@ export class ReservationCardComponent implements OnInit {
 
   @Input()
   public secondbtn?: string;
+
+  @Input()
+  public navbtn?: string;
+
+  @Input()
+  public navlink?: string;
 }

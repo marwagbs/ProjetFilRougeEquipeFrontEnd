@@ -4,19 +4,35 @@
       <div *ngFor="let table of tables" class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100 bg-primary text-white">
           <div class="card-body">
-          
-            <p class="card-text">{{ table.nombrePlaces }} places</p>
-            <p class="card-text"> {{ table.statut }}</p>
-  
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="circle-button-wrapper">
+                <button class="text-white bg-warning pb-1 btn btn-circle">{{ table.numeroTable }}</button>
+              </div>
+              <div>
+                <p class="card-text">{{ table.nombrePlaces }} places</p>
+                <p class="card-text">{{ table.statut }}</p>
+              </div>
+            </div>
           </div>
-          <div class="card-footer bg-secondary">
-            <button class="btn btn-sm btn-outline-light float-right">{{ table.numeroTable }}</button>
+          <div class="card-body">
+            <div *ngIf="getReservationsForTable(table.id).length > 0; else noReservations">
+              <p class="card-title">Reservations du jour:</p>
+              <div *ngFor="let reservation of getReservationsForTable(table.id)">
+                <p class="card-text">
+                  {{ reservation.heure }}: {{ reservation.utilisateur.nom }} {{ reservation.utilisateur.prenom }}
+                  pour {{ reservation.nbPersonne }} personnes 
+                  <button class="btn btn-sm btn-secondary" (click)="openConfirmationDialogArrivee(reservation)">Arrivé ?</button>
+                </p>
+              </div>
+            </div>
+            <ng-template #noReservations>
+              <p class="text">Aucune reservation pour cette table</p>
+              <button class="btn btn-sm btn-secondary" (click)="openConfirmationDialogNouvelleResa(table)">Attribuer table</button>
+            </ng-template>
           </div>
         </div>
       </div>
-       
     </ng-container>
-
     <ng-template #noTables>
       <div class="col-md-12">
         <p class="text-danger">Aucune table disponible</p>
