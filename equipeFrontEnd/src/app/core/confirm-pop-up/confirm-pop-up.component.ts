@@ -36,7 +36,7 @@ export class ConfirmPopUpComponent {
   }
   
   decreaseNumber(): void {
-    if (this.nbrPersonnes > 0) {
+    if (this.nbrPersonnes > 1) {
       this.nbrPersonnes--;
     }
   }
