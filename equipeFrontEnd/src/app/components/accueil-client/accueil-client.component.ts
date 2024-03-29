@@ -60,9 +60,20 @@ export class AccueilClientComponent implements OnInit {
  
     const today = new Date().toISOString().split('T')[0];
   
+    console.log("etienne");
+    
+console.log(this.reservations);
 
-    return this.reservations.filter(reservation => 
-      reservation.tableRes.id === tableId && reservation.dateRes === today
+    return this.reservations.filter(reservation =>{
+      if(reservation.tableRes){
+       return reservation.tableRes.id === tableId && reservation.dateRes === today
+        
+      }
+      return false;
+      
+    } 
+     
+     
     );
   }
   
