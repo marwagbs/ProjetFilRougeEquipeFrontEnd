@@ -48,8 +48,40 @@ export class CommandeService {
       }))
     }
 
+    public updateStatusCommandePrete(id: number): Observable<Commande> {
+      return this.httpClient.put<Commande>(`http://localhost:8080/commandes/modifierPrete/${id}`, {})
+  }
+
+  public updateStatusCommandeRegle(id: number): Observable<Commande> {
+    return this.httpClient.put<Commande>(`http://localhost:8080/commandes/modifierReglee/${id}`, {})
+}
+
+
     public getAllCommandeWithStatusPasse():Observable<Commande[]>{
       return this.httpClient.get<Commande[]>('http://localhost:8080/commandes/passees').pipe(
+        map((commandes:Commande[] | null)=>{
+          if (commandes==null){
+              return[];
+          }
+          return commandes;
+        })
+      )
+    }
+
+
+    public getAllCommandeWithStatusPrete():Observable<Commande[]>{
+      return this.httpClient.get<Commande[]>('http://localhost:8080/commandes/pret').pipe(
+        map((commandes:Commande[] | null)=>{
+          if (commandes==null){
+              return[];
+          }
+          return commandes;
+        })
+      )
+    }
+
+    public getAllCommandeWithStatusServie():Observable<Commande[]>{
+      return this.httpClient.get<Commande[]>('http://localhost:8080/commandes/servie').pipe(
         map((commandes:Commande[] | null)=>{
           if (commandes==null){
               return[];

@@ -6,38 +6,49 @@ import { MatRippleComponent } from '../../core/components/mat-ripple/mat-ripple.
 import { AlertComponent } from '../../core/components/alert/alert.component';
 import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { Produit } from '../../entities/produit';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import { ConfirmDirective } from '../../core/directives/confirm.directive';
+import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-page-cuisine',
   standalone: true,
-  imports: [MatRippleComponent, AlertComponent, CommonModule, AsyncPipe ,UpperCasePipe],
+  imports: [MatRippleComponent, AlertComponent, CommonModule, AsyncPipe ,UpperCasePipe, MatCardModule, MatButtonModule, ConfirmDirective , RouterLink],
   templateUrl: './page-cuisine.component.html',
   styleUrl: './page-cuisine.component.scss'
 })
 export class PageCuisineComponent implements OnInit {
   public commandes$!:Observable<Commande[]>
-  produitsParNom: Map<string, Commande[]> = new Map();
-  constructor(private commandeService:CommandeService){}
+  public produitsParNom: Map<string, number> = new Map();
+  public commandesAvecProduits: Map<number, Map<string, number>> = new Map()
+  constructor(private commandeService:CommandeService ){}
 
 
 
   ngOnInit(): void {
-    this.commandes$ = this.commandeService.getAllCommandeWithStatusPasse()
-    this.commandes$.subscribe(commande=>{
-      console.log(commande)
-    });
-    console.log(this.commandes$)
+    this.commandes$ = this.commandeService.getAllCommandeWithStatusPasse();
     this.commandes$.subscribe(commandes => {
       commandes.forEach(commande => {
-        commande.produits.forEach((produit:Produit) => { 
+        const produitsParNom: Map<string, number> = new Map();
+        commande.produits.forEach((produit: Produit) => {
           const nomProduit = produit.nom;
-          if (!this.produitsParNom.has(nomProduit)) {
-            this.produitsParNom.set(nomProduit, []);
-          } else {
-            this.produitsParNom.get(nomProduit)!.push(commande)
+          if (!produitsParNom.has(nomProduit)) {
+            produitsParNom.set(nomProduit, 0);
           }
+          const count = produitsParNom.get(nomProduit)! + 1;
+          produitsParNom.set(nomProduit, count);
         });
+        this.commandesAvecProduits.set(commande.id, produitsParNom);
       });
     });
   }
   
+  public updateCommande(idCommande:number):void{
+   
+  if (idCommande!==null){
+    this.commandeService.updateStatusCommandePrete(idCommande).subscribe()
+  }
+}
+
 }

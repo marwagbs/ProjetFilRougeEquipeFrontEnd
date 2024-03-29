@@ -16,8 +16,9 @@ export const routes: Routes = [
     { path: 'reservations-acceptees', canActivate: [isAuthenticated],loadComponent:() => import('./components/page-reservations-acceptees/page-reservations-acceptees.component').then(f => f.PageReservationsAccepteesComponent)},
     {path: 'cree-commande', canActivate: [isAuthenticated], loadComponent:()=>import('./components/page-commande/page-commande.component').then((f=>f.PageCommandeComponent))},
     {path:"service",canActivate: [isAuthenticated], loadComponent:()=>import('./components/page-service/page-service.component').then(f=>f.PageServiceComponent)},
-   
     {path:"cuisine", canActivate: [isAuthenticated], loadComponent:()=>import('./components/page-cuisine/page-cuisine.component').then(f=>f.PageCuisineComponent)},
+    {path:"caisse",canActivate: [isAuthenticated], loadComponent:()=>import('./components/caisse/caisse.component').then(f=>f.CaisseComponent)},
+    {path:"showDetail/:id", canActivate: [isAuthenticated], loadComponent: ()=>import('./components/show-detail/show-detail.component').then(f=>f.ShowDetailComponent)},
     {path:"**", loadComponent:()=>import('./components/login-form/login-form.component').then((f=>f.LoginFormComponent)) }
 
 ]

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { AlertComponent } from '../../core/components/alert/alert.component';
 import { Router } from '@angular/router';
 import { CommandeDataService } from '../../services/commande/commande-data.service';
+import { Commande } from '../../entities/commande';
 
 @Component({
   selector: 'app-page-service',
@@ -19,16 +20,23 @@ export class PageServiceComponent implements OnInit {
   constructor(private commandeService:CommandeService, private router:Router, private commandeDataService: CommandeDataService){}
 
   public tables$!:Observable<TableRes[]>;
+  public commndes$!:Observable<Commande[]>;
   ngOnInit(): void {
     this.tables$=this.commandeService.getAllTableWithStatusOcuppe();
-    this.tables$.subscribe(table=>{
-     
+    this.tables$.subscribe();
+    this.commndes$=this.commandeService.getAllCommandeWithStatusPrete();
+    this.commndes$.subscribe((commande)=>{
+      console.log(commande)
     })
+   
   }
 
   createCommande(id: number) {
-    const data = {}; // Vous pouvez passer les données de la commande ici si nécessaire
+  
 
+    
+
+    const data = {};   
     this.commandeService.createCommande(id, data).subscribe(
       (commande) => {
         this.commandeDataService.setCommandeData(commande)

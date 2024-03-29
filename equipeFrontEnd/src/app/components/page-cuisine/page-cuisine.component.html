@@ -1,17 +1,29 @@
 <div class="container">
-    <h1 class="text-center mt-5">Commandes</h1>
-<div >
-
+    <h1 class=" mt-5 text-primary">Commandes</h1>
+<div>
     <ng-container *ngIf="commandes$ | async  as commandes else loading" >
-            <ng-container *ngFor="let commande of commandes">
-               <div>
-               <p> Commande N° : {{commande.id}}</p>
-               <div *ngFor=" let  produit of commande.produits" >
-                    <p>{{produit.id}} - {{produit.nom}}</p>
-                  
-                </div>
+        <div *ngFor="let commande of commandesAvecProduits | keyvalue" class="d-flex flex-column mb-3 justify-content-center"> 
+            <mat-card class="example-card "  coreConfirm [header]="'Confirmation'"  
+            [body]="'Passer la commande en prête'"
+            (confirmClicked)="updateCommande(commande.key)"
+            >
+                <mat-card-header>
+                  <mat-card-title class="text-secondary">Commande N° : {{commande.key}}</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content *ngFor="let produit of commande.value | keyvalue">
+                    <div class="d-flex justify-content-between align-items-center ">
+                        <p>{{produit.key}} : </p>
+                        <p>{{produit.value}}</p>
+                    </div>
+                   
+                  </mat-card-content>
+                </mat-card>
+            <div >
+             
             </div>
-            </ng-container>
+          </div>
+          
                     
     </ng-container>
 </div>
