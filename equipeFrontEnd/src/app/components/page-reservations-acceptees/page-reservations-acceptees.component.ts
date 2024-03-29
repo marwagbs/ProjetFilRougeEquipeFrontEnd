@@ -6,7 +6,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { ReservationCardComponent } from '../reservation-card/reservation-card.component';
 
-
 @Component({
   selector: 'app-page-reservations-acceptees',
   standalone: true,
