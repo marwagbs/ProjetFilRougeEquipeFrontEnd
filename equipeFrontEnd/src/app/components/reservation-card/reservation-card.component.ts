@@ -18,21 +18,16 @@ import { ReservationService } from '../../services/reservation.service';
 })
 export class ReservationCardComponent implements OnInit {
   reservations$!: Observable<Reservations>;
-  _reservation$!: Observable<Reservation>;
- 
 
   constructor(private reservationService: ReservationService) { }
 
   ngOnInit(): void {
-    this.reservations$ = this.reservationService.getAllReservations().pipe(map(arr => {
-      return arr.sort((a, b) => (a.dateRes).localeCompare(b.dateRes));
-    })
-    )
+    this.reservations$ = this.reservationService.reservations$.pipe(map(arr => {
+        return arr.sort((a, b) => (a.dateRes).localeCompare(b.dateRes));
+      })
+      );
   }
 
-  // public selectReservation(reservation: Reservation) {
-  //   return this.reservationService.currentReservation = reservation;
-  // }
   onStatutAcceptee(id: number): void {
       this.reservationService.setStatutAcceptee(id, "");
   }
@@ -60,4 +55,10 @@ export class ReservationCardComponent implements OnInit {
 
   @Input()
   public secondbtn?: string;
+
+  @Input()
+  public navbtn?: string;
+
+  @Input()
+  public navlink?: string;
 }

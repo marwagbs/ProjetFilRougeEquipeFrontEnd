@@ -1,7 +1,6 @@
 .ripple-container {
     cursor: pointer;
     text-align: center;
-  
     width: 200px;
     height: 200px;
     line-height: 200px;
@@ -12,9 +11,35 @@
   
     -webkit-user-drag: none;
     -webkit-tap-highlight-color: transparent;
+
+  }
+
+
+  .ripple-table {
+    cursor: pointer;
+    text-align: center;
+    width: 90px;
+    height: 90px;
+     line-height: 70px;
+    font-size: 15px;
+    text-align: center;
+  
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+  
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+
+    p{
+      text-align: center;
+      font-size: 22px;
+
     transition: transform 300ms ease-in-out;
 
     &:hover {
       transform: scale(1.1);
+
+    }
     }
   }

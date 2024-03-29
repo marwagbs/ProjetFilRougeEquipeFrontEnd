@@ -1,0 +1,10 @@
+@import "../../../styles/color";
+.example-card {
+    max-width: 500px;
+    &:hover{
+        background:$color-primary;
+        color:#000;
+    }
+   
+  }
+  
