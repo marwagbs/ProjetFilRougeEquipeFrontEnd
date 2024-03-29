@@ -7,54 +7,58 @@ import { Reservation, Reservations } from '../entities/reservation';
   providedIn: 'root'
 })
 export class ReservationService {
-  private _currentReservation?: Reservation;
-  private _reservations$ = new Subject<Reservations>();
-  public readonly reservations$: Observable<Reservations> = this._reservations$.asObservable();
-  private _reservation?: Reservation;
+  private _reservations$ = new BehaviorSubject<Reservations>([]);
 
-  public get currentReservation(): Reservation | undefined {
-    return this._currentReservation;
+  constructor(private httpClient: HttpClient) { 
+    this.refreshReservations();
   }
 
-  public set currentReservation(value: Reservation) {
-    this._currentReservation = value;
+  get reservations$(): Observable<Reservations> {
+    return this._reservations$.asObservable();
   }
 
-  constructor(private httpClient: HttpClient) { }
+  private refreshReservations(): void {
+    this.httpClient.get<Reservations>('http://localhost:8080/reservations/restaurant/1').subscribe(
+      reservations => {
+        this._reservations$.next(reservations);
+      });
+   }
 
-  getAllReservations(): Observable<Reservations> {
-    return this.httpClient.get<Reservations>('http://localhost:8080/reservations/restaurant/1');
-  }
+//   getAllReservations(): Observable<Reservations> {
+//     return this.httpClient.get<Reservations>('http://localhost:8080/reservations/restaurant/1');
+//   }
 
- getReservationsByStatutAcceptee (): Observable<Reservations> {
-  return this.httpClient.get<Reservations>('http://localhost:8080/reservations/acceptees');
- }
+//  getReservationsByStatutAcceptee (): Observable<Reservations> {
+//   return this.httpClient.get<Reservations>('http://localhost:8080/reservations/acceptees');
+//  }
 
- getReservationById(id: number, reservations: Reservations): Observable<Reservation | undefined> {
-  return this.getAllReservations().pipe(map(() => reservations.find(r => r.id === id)))
- }
+//  getReservationById(id: number, reservations: Reservations): Observable<Reservation | undefined> {
+//   return this.getAllReservations().pipe(map(() => reservations.find(r => r.id === id)))
+//  }
 
  setStatutAcceptee(id: number, data: any): void {
-  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setacceptee/${id}`,{}).subscribe();
+  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setacceptee/${id}`,{}).subscribe(() => {
+    this.refreshReservations();
+  });
  }
 
  setStatutRefusee(id: number, data: any): void {
-  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setrefusee/${id}`,{}).subscribe();
+  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setrefusee/${id}`,{}).subscribe(() => {
+    this.refreshReservations();
+  });
  }
 
  setStatutPresent(id: number, data: any): void {
-  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setpresent/${id}`,{}).subscribe();
+  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setpresent/${id}`,{}).subscribe(() => {
+    this.refreshReservations();
+  });
  }
 
  setStatutAbsent(id: number, data: any): void {
-  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setabsent/${id}`,{}).subscribe();
+  this.httpClient.put<Reservation>(`http://localhost:8080/reservations/setabsent/${id}`,{}).subscribe(() => {
+    this.refreshReservations();
+  });
  }
-
-//  modifStatut(id: number, statut: 'acceptée' | 'refusée') {
-//   statut === undefined ? this.currentReservation?.statut === 'acceptée' : this.currentReservation?.statut === 'refusée';
-//   return this.httpClient.patch;
-//  }
-
 
 getReservationsByRestaurant() : Observable<Reservations> {
   return this.httpClient.get<Reservations>('http://localhost:8080/reservations/restaurant/1');
