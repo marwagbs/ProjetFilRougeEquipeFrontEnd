@@ -61,4 +61,10 @@ getReservationsByRestaurant() : Observable<Reservations> {
   
 }
 
+putResaPresentTableOccupee(id: number): Observable<void> {
+  const url = `http://localhost:8080/reservations/resaPresentTabOccupee/${id}`;
+  return this.httpClient.put<void>(url, {});
+}
+
+
 }

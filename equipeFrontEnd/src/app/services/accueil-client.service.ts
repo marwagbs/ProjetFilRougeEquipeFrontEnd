@@ -8,26 +8,33 @@ import { TableRes } from '../entities/TableRes';
   providedIn: 'root'
 })
 export class AccueilClientService {
-
-  private baseUrl = 'http://localhost:8080/tableres/1/tablesLibresEtReservees';
-
+  private baseUrl = 'http://localhost:8080/tableres'
+  
   constructor(private http: HttpClient) {
     
    }
 
   getAllTables(): Observable<TableRes[]> {
-    return this.http.get<TableRes[]>(this.baseUrl).pipe(
+    const url = `${this.baseUrl}/1/libreabsent`; // '1' le restaurant ID
+    return this.http.get<TableRes[]>(url).pipe(
       map(data => {
         console.log('Data received:', data);
-        return data; // Return the data as is
+        return data; 
       })
     );
   }
 
   getTableById(id: number): Observable<TableRes> {
-    return this.http.get<TableRes>(`${this.baseUrl}/${id}`);
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<TableRes>(url, {});
   }
 
   
+putTableOccupee(id: number): Observable<void> {
+const url = `${this.baseUrl}/${id}/occupee`;
+    return this.http.put<void>(url, {});
+}
 
+
+  
 }
