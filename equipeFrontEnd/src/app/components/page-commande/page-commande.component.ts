@@ -26,6 +26,7 @@ export class PageCommandeComponent implements OnInit{
 
 ngOnInit(): void {
     this.produits$=this.produitService.getAllProduits();
+  
     this.numeroTable=this.commandeDataervice.getCommandeData()?.tableRes.id
     this.produits$.subscribe(produits=>{
       produits.forEach(produit =>{
@@ -47,13 +48,7 @@ ngOnInit(): void {
     } 
     const idCommande =this.commandeDataervice.getCommandeData();
     if (idCommande!==null){
-      this.commandeService.updateCommande(idCommande.id, newData).subscribe(
-        (commande: Commande) => {
-          console.log('Commande mise à jour avec le produit ajouté :', commande);
-          
-        })
-
-      
+      this.commandeService.updateCommande(idCommande.id, newData).subscribe()
     } }
  
     public closeCommande():void{

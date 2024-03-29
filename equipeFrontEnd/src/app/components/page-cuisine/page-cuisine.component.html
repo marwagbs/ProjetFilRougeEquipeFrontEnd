@@ -1,0 +1,30 @@
+<div class="container">
+    <h1 class="text-center mt-5">Commandes</h1>
+<div >
+
+    <ng-container *ngIf="commandes$ | async  as commandes else loading" >
+            <ng-container *ngFor="let commande of commandes">
+               <div>
+               <p> Commande N° : {{commande.id}}</p>
+               <div *ngFor=" let  produit of commande.produits" >
+                    <p>{{produit.id}} - {{produit.nom}}</p>
+                  
+                </div>
+            </div>
+            </ng-container>
+                    
+    </ng-container>
+</div>
+</div>
+
+<ng-template #loading>
+    <core-alert text="" [beforeTextTemplate]="spinner"></core-alert>
+</ng-template>
+<ng-template #spinner>
+    <div class="d-flex align-items-center">
+        <div class="spinner-border text-primary m-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        Chargement en cours..
+    </div>
+</ng-template>

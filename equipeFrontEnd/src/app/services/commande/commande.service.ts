@@ -48,4 +48,15 @@ export class CommandeService {
       }))
     }
 
+    public getAllCommandeWithStatusPasse():Observable<Commande[]>{
+      return this.httpClient.get<Commande[]>('http://localhost:8080/commandes/passees').pipe(
+        map((commandes:Commande[] | null)=>{
+          if (commandes==null){
+              return[];
+          }
+          return commandes;
+        })
+      )
+    }
+
 }
