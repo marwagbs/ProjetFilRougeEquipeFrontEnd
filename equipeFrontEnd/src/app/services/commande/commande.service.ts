@@ -52,6 +52,11 @@ export class CommandeService {
       return this.httpClient.put<Commande>(`http://localhost:8080/commandes/modifierPrete/${id}`, {})
   }
 
+  public updateStatusCommandeServed(id: number): Observable<Commande> {
+    return this.httpClient.put<Commande>(`http://localhost:8080/commandes/modifierServie/${id}`, {})
+}
+
+
   public updateStatusCommandeRegle(id: number): Observable<Commande> {
     return this.httpClient.put<Commande>(`http://localhost:8080/commandes/modifierReglee/${id}`, {})
 }
