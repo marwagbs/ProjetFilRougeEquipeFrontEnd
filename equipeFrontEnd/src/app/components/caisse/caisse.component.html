@@ -1,0 +1,14 @@
+<div *ngFor="let commandeItem of commande$ | async" class="list-group m-3">
+    <div class="list-group-item list-group-item-action list-group-item-primary p-3 gap-1 d-flex justify-content-between align-items-start" [routerLink]="'/showDetail/' + commandeItem.id">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary m-3 p-3">{{commandeItem.tableRes.id}}</span>
+            <div *ngFor="let produit of commandesAvecProduits.get(commandeItem.id) | keyvalue, let i = index ">
+                <div class="d-flex justify-content-between align-items-center" *ngIf="i<2">
+                    <p>{{produit.key}} : </p>
+                    <p>{{produit.value}}</p>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</div>

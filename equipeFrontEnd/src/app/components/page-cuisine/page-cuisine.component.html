@@ -1,0 +1,42 @@
+<div class="container">
+    <h1 class=" mt-5 text-primary">Commandes</h1>
+<div>
+    <ng-container *ngIf="commandes$ | async  as commandes else loading" >
+        <div *ngFor="let commande of commandesAvecProduits | keyvalue" class="d-flex flex-column mb-3 justify-content-center"> 
+            <mat-card class="example-card "  coreConfirm [header]="'Confirmation'"  
+            [body]="'Passer la commande en prête'"
+            (confirmClicked)="updateCommande(commande.key)"
+            >
+                <mat-card-header>
+                  <mat-card-title class="text-secondary">Commande N° : {{commande.key}}</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content *ngFor="let produit of commande.value | keyvalue">
+                    <div class="d-flex justify-content-between align-items-center ">
+                        <p>{{produit.key}} : </p>
+                        <p>{{produit.value}}</p>
+                    </div>
+                   
+                  </mat-card-content>
+                </mat-card>
+            <div >
+             
+            </div>
+          </div>
+          
+                    
+    </ng-container>
+</div>
+</div>
+
+<ng-template #loading>
+    <core-alert text="" [beforeTextTemplate]="spinner"></core-alert>
+</ng-template>
+<ng-template #spinner>
+    <div class="d-flex align-items-center">
+        <div class="spinner-border text-primary m-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        Chargement en cours..
+    </div>
+</ng-template>
