@@ -59,10 +59,6 @@ export class AccueilClientComponent implements OnInit {
   getReservationsForTable(tableId: number): Reservation[] {
  
     const today = new Date().toISOString().split('T')[0];
-  
-    console.log("etienne");
-    
-console.log(this.reservations);
 
     return this.reservations.filter(reservation =>{
       if(reservation.tableRes){
