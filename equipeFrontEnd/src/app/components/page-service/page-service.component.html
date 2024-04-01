@@ -1,24 +1,28 @@
+<div class="container-fluid h-100">
+    <h1 class="text-center mt-5 text-secondary">Tables</h1>
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12">
+            <div class="d-flex flex-row flex-wrap gap-4 justify-content-center mt-5">
 
-<div class="container">
-    <h1 class="text-center mt-5">Tables</h1>
-
-<div class="d-flex flex-row flex-wrap gap-4 justify-content-center mt-5" >
-
-    <ng-container *ngIf="tables$ | async  as tables else loading" >
-        <div *ngFor="let table of tables">
-            <app-mat-ripple [text]="table.numeroTable.toString()" classname="ripple-table" (click)="createCommande(table.id)"></app-mat-ripple>
+                <ng-container *ngIf="tables$ | async  as tables else loading">
+                    <div *ngFor="let table of tables">
+                        <app-mat-ripple [text]="table.numeroTable.toString()" classname="ripple-table"
+                            (click)="createCommande(table.id)"></app-mat-ripple>
+                    </div>
+                </ng-container>
+            </div>
         </div>
-    </ng-container>
-</div>
-</div>
-<ng-template #loading>
-    <core-alert text="" [beforeTextTemplate]="spinner"></core-alert>
-</ng-template>
-<ng-template #spinner>
-    <div class="d-flex align-items-center">
-        <div class="spinner-border text-primary m-3" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        Chargement en cours..
     </div>
-</ng-template>
+    </div>
+
+        <ng-template #loading>
+            <core-alert text="" [beforeTextTemplate]="spinner"></core-alert>
+        </ng-template>
+        <ng-template #spinner>
+            <div class="d-flex align-items-center">
+                <div class="spinner-border text-primary m-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                Chargement en cours..
+            </div>
+        </ng-template>

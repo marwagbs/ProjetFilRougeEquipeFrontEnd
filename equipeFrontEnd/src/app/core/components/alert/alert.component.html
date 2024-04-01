@@ -1,4 +1,4 @@
-<ngb-alert [dismissible]="canBeClosed" [type]="color" (closed)="emitCloseEvent()">
+<ngb-alert [dismissible]="canBeClosed" [type]="color" (closed)="emitCloseEvent()" class="mt-3">
     <ng-template *ngIf="beforeTextTemplate" [ngTemplateOutlet]="beforeTextTemplate"
         [ngTemplateOutletContext]="{$implicit:'before'}">
     </ng-template>
